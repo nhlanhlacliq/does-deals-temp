@@ -1,10 +1,9 @@
 import React from 'react';
 import { client } from '../lib/client';
 
+import { Product, Deal, FooterBanner, HeroBanner } from '../components';  
 
-import { Product, FooterBanner, HeroBanner } from '../components';  
-
-const Home = ({ products, bannerData }) => {
+const Home = ({ products, deals, bannerData }) => {
   return (
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
@@ -13,10 +12,17 @@ const Home = ({ products, bannerData }) => {
         <p>In and around Stellenbosch</p>
       </div>
 
-      <div className='products-container' >
+      {/* <div className='products-container' >
         {products?.map(
           (product) => <Product 
           key={product._id} product={product}/>
+        )}
+        </div> */}
+
+      <div className='products-container' >
+        {deals?.map(
+          (deal) => <Deal 
+          key={deal._id} deal={deal}/>
         )}
       </div>
 
@@ -29,11 +35,14 @@ export const getServerSideProps  = async () => {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
   
+  const dealsQuery = '*[_type == "deal"]';
+  const deals = await client.fetch(dealsQuery);
+  
   const bannerQuery = '*[_type == "banner"]';
   const bannerData = await client.fetch(bannerQuery);
 
   return {
-    props: { products, bannerData }
+    props: { products, deals, bannerData }
   }
 }
 
