@@ -75,11 +75,11 @@ export default  {
             title: 'Food type',
             type: 'tags',
         },
-        // {
-        //     name: 'details',
-        //     title: 'Details',
-        //     description: 'Any extra details',
-        //     type: 'text',
-        // }
+        {
+            name: 'details',
+            title: 'Details',
+            description: 'Any extra details on the special',
+            type: 'text',
+        }
     ]
 }
