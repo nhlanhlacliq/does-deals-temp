@@ -28,6 +28,8 @@ yarn-error.log*
 # local env files
 .env*.local
 /.env
+secret_google-maps-input.json
+google-maps-input.json
 
 # vercel
 .vercel
