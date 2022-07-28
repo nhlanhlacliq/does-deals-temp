@@ -10,6 +10,7 @@ const DealDetails = ({ deal, deals }) => {
     return (
     <div>
         <div className='product-detail-container' >
+            { image ? 
             <div>
                 <div className='image-container' >
                     <img src={urlFor(image && image[index])} className='product-detail-image' />
@@ -17,15 +18,17 @@ const DealDetails = ({ deal, deals }) => {
                 <div className='small-image-container' >
                     {image?.map((item, i) => (
                         <img key={i}
-                            src={urlFor(item)}
-                            className={i === index ? 
-                                'small-image selected-image' :
-                                'small-image'}
+                        src={urlFor(item)}
+                        className={i === index ? 
+                            'small-image selected-image' :
+                            'small-image'}
                             onMouseEnter={() => setIndex(i)}
-                        />
-                    ))}
+                            />
+                        ))}
                 </div>
             </div>
+            : <p> Loading images... </p>
+            }
                 <div className='product-detail-desc' >
                     <h1>{restaurant}</h1>
                     
