@@ -12,6 +12,7 @@ const Home = ({ products, deals, bannerData }) => {
         <p>In and around Stellenbosch</p>
       </div>
 
+
       {/* <div className='products-container' >
         {products?.map(
           (product) => <Product 
