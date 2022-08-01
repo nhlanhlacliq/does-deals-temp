@@ -15,7 +15,7 @@ export default  {
                 hotspot: true,
             },
             description: 'A nice picture of the deal (or something related) so users can whet their appetites',
-
+            validation: Rule => Rule.required().warning()
         },
         {
             name: 'restaurant',
