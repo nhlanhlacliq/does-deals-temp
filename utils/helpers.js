@@ -1,4 +1,4 @@
-export const dayOptions = [
+const dayOptions = [
     { label: 'Monday',      value: 'monday'     },
     { label: 'Tuesday',     value: 'tuesday'    },
     { label: 'Wednesday',   value: 'wednesday'  },
@@ -7,6 +7,10 @@ export const dayOptions = [
     { label: 'Saturday',    value: 'saturday'   },
     { label: 'Sunday',      value: 'sunday'     },
 ]
+
+export const dayFilterOptions = [
+        { label: 'All specials', value: 'all-specials'}
+    ].concat(dayOptions);
 
 /**
  * Parses days object from Sanity and 

@@ -4,15 +4,19 @@ import { client } from '../lib/client';
 import { Product, Deal, FooterBanner, HeroBanner } from '../components';  
 import { parseDays } from '../utils/helpers';
 import Select from 'react-select';
-import { dayOptions } from '../utils/helpers';
+import { dayFilterOptions } from '../utils/helpers';
 
 const Home = ({ products, deals, bannerData }) => {
   const [ filteredDeals, setFilteredDeals ] = useState(deals);
 
-  const filterDealsByDay = (dayOption) => {
-    const dealsFiltered = deals.filter(d => 
-      JSON.stringify(parseDays(d.days)).includes(JSON.stringify(dayOption))
-    );
+  // console.log(deals.map(d => d.food))
+
+  const filterDealsByDay = (day) => {
+    const dealsFiltered = day.value === 'all-specials' 
+    ? deals
+    : deals.filter(d => 
+        JSON.stringify(parseDays(d.days)).includes(JSON.stringify(day))
+      );
     
     setFilteredDeals(dealsFiltered);
   };
@@ -25,14 +29,9 @@ const Home = ({ products, deals, bannerData }) => {
         <p>In and around Stellenbosch</p>
       </div>
 
-      {/* {TODO: styling} */}
+      {/* {TODO: styling || Show all | show today} */}
       <div className="filter-section">
-        <Select options={dayOptions} onChange={filterDealsByDay} />
-        { deals !== filteredDeals && 
-          <button className="filter-reset" onClick={() => setFilteredDeals(deals)}>
-            Reset
-          </button>
-        }
+        <Select options={dayFilterOptions} onChange={filterDealsByDay} />
       </div>
 
       <div className='products-container' >
