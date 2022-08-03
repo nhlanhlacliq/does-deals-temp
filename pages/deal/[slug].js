@@ -103,19 +103,20 @@ const DealDetails = ({ deal, deals }) => {
   )
 }
 
+//TODO:
 export const getStaticPaths = async () => {
-    const query =  `*[_type == "product"] {
+    const query =  `*[_type == "deal"] {
         slug {
             current
         }
     }
     `;
     
-    const products = await client.fetch(query);
+    const deals = await client.fetch(query);
     
-    const paths = products.map((product) => ({
+    const paths = deals.map((deal) => ({
         params: {
-            slug: product.slug.current
+            slug: deal.slug.current
         }
     }));
 
