@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { client, urlFor } from '../../lib/client';
-import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar }from 'react-icons/ai'
+import { AiFillStar, AiOutlineStar }from 'react-icons/ai'
 import { Deal } from '../../components';
 
 const DealDetails = ({ deal, deals }) => {
