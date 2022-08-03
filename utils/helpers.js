@@ -41,3 +41,9 @@ export const parseDays = (array) => {
 
     return res;
 };
+
+export const parseFoodTypes = (deals) => {
+  return [
+    { label: 'All food types', value: 'all-types'}
+  ].concat(deals.map(d => d.food).flat());
+}
