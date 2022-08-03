@@ -99,6 +99,13 @@ width: 100%;
   font-weight: 600;
 
 }
+
+.filter-section{
+  display: flex;
+  justify-content: space-around;
+
+}
+
 .products-container{
   display: flex;
   flex-wrap: wrap;
