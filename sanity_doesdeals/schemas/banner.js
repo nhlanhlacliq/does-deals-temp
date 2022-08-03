@@ -20,6 +20,7 @@ export default {
             name: 'product',
             title: 'Product',
             type: 'string',
+            description: 'Use the \'slug\' from a deal so that the banner links to the actual deal.', 
         },
         {
             name: 'desc',
