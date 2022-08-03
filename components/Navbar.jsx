@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { urlFor } from '../lib/client';
-import { AiOutlineShopping } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
+
 
 const Navbar = () => {
   return (
@@ -10,9 +11,9 @@ const Navbar = () => {
         <Link href='/' > Doesdeals </Link>
       </p>
 
-      <button type='button' className='cart-icon' onClick='' >
-        <AiOutlineShopping />
-        <span className='cart-item-qty'>1</span>
+      <button type='button' className='cart-icon' onClick={() => alert('User menu under construction...')} >
+        <AiOutlineUser />
+        {/* <span className='cart-item-qty'>1</span> */}
       </button>
     </div>
   )
