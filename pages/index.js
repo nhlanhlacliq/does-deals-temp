@@ -11,6 +11,31 @@ const Home = ({ products, deals, bannerData }) => {
   const foodFilterOptions = parseFoodTypes(filteredDeals);
   const [ dayFilter, setDayFilter ] = useState(dayFilterOptions[0]);
   const [ foodFilter, setFoodFilter ] = useState(foodFilterOptions[0]);
+  const [ location, setLocation ] = useState(null);
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      console.log("Available");
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLocation({
+          'lat': position.coords.latitude,
+          'lng': position.coords.longitude
+        });
+        console.log(location);
+      }, 
+
+      (error) => {
+        error.message === 'User denied Geolocation' 
+        ? window.alert('Please enable your location permissions to use location filtering.')
+        : console.log('Location error:' + error.message);
+      });
+
+    } else {
+      console.log("Not Available");
+    }
+  }, [])
+
+  console.log(location);
 
   const filterDealsByDay = (day) => {
     setDayFilter(day);
@@ -53,8 +78,10 @@ const Home = ({ products, deals, bannerData }) => {
 
       {/* {TODO: styling || Show all | show today} */}
       <div className="filter-section">
-        <Select id='day-filter' options={dayFilterOptions} onChange={filterDealsByDay} value={dayFilterOptions[0]} />
+        <Select options={dayFilterOptions} onChange={filterDealsByDay} value={dayFilterOptions[0]} />
         <Select key={`select-${foodFilter}`} options={foodFilterOptions} onChange={filterDealsByFoodType} value={foodFilterOptions[0]} />
+        <Select options={dayFilterOptions} onChange={filterDealsByDay} value={dayFilterOptions[0]} />
+        
       </div>
 
       <div className='products-container' >
