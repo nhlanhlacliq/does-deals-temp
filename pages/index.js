@@ -4,13 +4,17 @@ import { client } from '../lib/client';
 import { Product, Deal, FooterBanner, HeroBanner } from '../components';  
 import Select from 'react-select';
 import { parseDays, 
-  dayFilterOptions, parseFoodTypes } from '../utils/helpers';
+  dayFilterOptions, parseFoodTypes, parseAreas } from '../utils/helpers';
 
 const Home = ({ products, deals, bannerData }) => {
   const [ filteredDeals, setFilteredDeals ] = useState(deals);
+  
   const foodFilterOptions = parseFoodTypes(filteredDeals);
   const [ dayFilter, setDayFilter ] = useState(dayFilterOptions[0]);
   const [ foodFilter, setFoodFilter ] = useState(foodFilterOptions[0]);
+  
+  const areaFilterOptions = parseAreas(filteredDeals);
+  const [ areaFilter, setAreaFilter ] = useState(areaFilterOptions[0]);
   const [ location, setLocation ] = useState(null);
 
   useEffect(() => {
@@ -35,7 +39,8 @@ const Home = ({ products, deals, bannerData }) => {
     }
   }, [])
 
-  console.log(location);
+  // console.log(location);
+  // console.log(areaFilterOptions);
 
   const filterDealsByDay = (day) => {
     setDayFilter(day);
@@ -45,9 +50,13 @@ const Home = ({ products, deals, bannerData }) => {
     setFoodFilter(type);
   }
 
+  const filterDealsByArea = (area) => {
+    setAreaFilter(area);
+  }
+
   useEffect(() => {
     filterDeals();
-  }, [dayFilter, foodFilter]);
+  }, [dayFilter, foodFilter, areaFilter]);
 
   const filterDeals = () => {
     let filterList = []
@@ -62,6 +71,14 @@ const Home = ({ products, deals, bannerData }) => {
     if (foodFilter.value !== 'all-types'){
       filterList = filterList.filter(d => 
         JSON.stringify(d.food.flat()).includes(JSON.stringify(foodFilter))
+      );
+    }
+
+    // TODO:
+    if (areaFilter.value !== 'all-areas'){
+      console.log(areaFilter);
+      filterList = filterList.filter(d => 
+        d.area.includes(areaFilter.label)
       );
     }
 
@@ -80,8 +97,7 @@ const Home = ({ products, deals, bannerData }) => {
       <div className="filter-section">
         <Select options={dayFilterOptions} onChange={filterDealsByDay} value={dayFilterOptions[0]} />
         <Select key={`select-${foodFilter}`} options={foodFilterOptions} onChange={filterDealsByFoodType} value={foodFilterOptions[0]} />
-        <Select options={dayFilterOptions} onChange={filterDealsByDay} value={dayFilterOptions[0]} />
-        
+        <Select options={areaFilterOptions} onChange={filterDealsByArea} value={areaFilterOptions[0]} />
       </div>
 
       <div className='products-container' >
