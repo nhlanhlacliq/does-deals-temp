@@ -47,3 +47,14 @@ export const parseFoodTypes = (deals) => {
     { label: 'All food types', value: 'all-types'}
   ].concat(deals.map(d => d.food).flat());
 }
+
+export const parseAreas = (deals) => {
+    return [
+      { label: 'All areas', value: 'all-areas'}
+    ].concat(deals.map(d => {
+        return {
+            label: `${d.area}`,
+            value: `${d.area.replace(' ', '-').toLowerCase()}`
+        }
+    }));
+}
