@@ -47,8 +47,13 @@ export default  {
         },
         {
             name: 'location',
-            title: 'Restaurant Location',
+            title: '(GoogleMap) Restaurant Location',
             type: 'geopoint',
+        },
+        {
+            name: 'area',
+            title: '(Manual) Restaurant Area/Location',
+            type: 'string',
         },
         {
             name: 'days',
