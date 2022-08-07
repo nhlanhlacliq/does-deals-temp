@@ -75,6 +75,7 @@ const Home = ({ products, deals, bannerData }) => {
     }
 
     // TODO:
+    
     if (areaFilter.value !== 'all-areas'){
       console.log(areaFilter);
       filterList = filterList.filter(d => 
