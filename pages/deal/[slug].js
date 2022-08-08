@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { client, urlFor } from '../../lib/client';
-import { AiFillStar, AiOutlineStar }from 'react-icons/ai'
+import { AiFillStar, AiOutlineStar, BsStarHalf }from 'react-icons/ai'
+
 import { Deal } from '../../components';
 
 const DealDetails = ({ deal, deals }) => {
-    const { image, restaurant, special, days, location } = deal;
+    const { image, 
+            restaurant, 
+            special, 
+            days, 
+            location,
+            rating } = deal;
     const [ index, setIndex ] = useState(0);
+    
+    let starRating = Array.from('1'.repeat(Number(rating.value)));
+    while (starRating.length < 5) {
+        starRating.push(0);
+    }
 
     return (
     <div>
@@ -35,15 +46,12 @@ const DealDetails = ({ deal, deals }) => {
                     {/* TODO: */}
                     <div className='reviews' >
                         <div>
-                            <AiFillStar/>
-                            <AiFillStar/>
-                            <AiFillStar/>
-                            <AiFillStar/>
-                            <AiOutlineStar/>
+                            {starRating.map(star => 
+                                star ? <AiFillStar/>
+                                : <AiOutlineStar/>)
+                            }
                         </div>
-                        <p>
-                            (20)
-                        </p>
+                        {/* <p> (20) </p> */}
                     
                     </div>
                     <h4>Details: </h4>
