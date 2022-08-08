@@ -16,32 +16,36 @@ const Home = ({ products, deals, bannerData }) => {
   
   const areaFilterOptions = parseAreas(filteredDeals);
   const [ areaFilter, setAreaFilter ] = useState(areaFilterOptions[0]);
-  const [ location, setLocation ] = useState(null);
+  
+  /**
+   * Currently disabled
+   * 
+   */
+  // const [ location, setLocation ] = useState(null);
 
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      console.log("Available");
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLocation({
-          'lat': position.coords.latitude,
-          'lng': position.coords.longitude
-        });
-        console.log(location);
-      }, 
+  // useEffect(() => {
+  //   if ("geolocation" in navigator) {
+  //     console.log("Available");
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       setLocation({
+  //         'lat': position.coords.latitude,
+  //         'lng': position.coords.longitude
+  //       });
+  //       console.log(location);
+  //     }, 
 
-      (error) => {
-        error.message === 'User denied Geolocation' 
-        ? window.alert('Please enable your location permissions to use location filtering.')
-        : console.log('Location error:' + error.message);
-      });
+  //     (error) => {
+  //       error.message === 'User denied Geolocation' 
+  //       ? window.alert('Please enable your location permissions to use location filtering.')
+  //       : console.log('Location error:' + error.message);
+  //     });
 
-    } else {
-      console.log("Not Available");
-    }
-  }, [])
+  //   } else {
+  //     console.log("Not Available");
+  //   }
+  // }, [])
 
   // console.log(location);
-  // console.log(areaFilterOptions);
 
   const filterDealsByDay = (day) => {
     setDayFilter(day);
@@ -75,9 +79,7 @@ const Home = ({ products, deals, bannerData }) => {
       );
     }
 
-    // TODO:
     if (areaFilter.value !== 'all-areas'){
-      console.log(areaFilter);
       filterList = filterList.filter(d => 
         d.area.includes(areaFilter.label)
       );
