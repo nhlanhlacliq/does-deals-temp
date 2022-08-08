@@ -5,6 +5,7 @@ import { Product, Deal, FooterBanner, HeroBanner } from '../components';
 import Select from 'react-select';
 import { parseDays, 
   dayFilterOptions, parseFoodTypes, parseAreas } from '../utils/helpers';
+import { customStyles } from '../utils/styles'; 
 
 const Home = ({ products, deals, bannerData }) => {
   const [ filteredDeals, setFilteredDeals ] = useState(deals);
@@ -93,11 +94,27 @@ const Home = ({ products, deals, bannerData }) => {
         <p>In and around Stellenbosch</p>
       </div>
 
-      {/* {TODO: styling || Show all | show today} */}
       <div className="filter-section">
-        <Select options={dayFilterOptions} onChange={filterDealsByDay} value={dayFilterOptions[0]} />
-        <Select key={`select-${foodFilter}`} options={foodFilterOptions} onChange={filterDealsByFoodType} value={foodFilterOptions[0]} />
-        <Select options={areaFilterOptions} onChange={filterDealsByArea} value={areaFilterOptions[0]} />
+        <Select 
+          options={dayFilterOptions} 
+          onChange={filterDealsByDay} 
+          value={dayFilter}
+          styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+        />
+
+        <Select key={`select-${foodFilter}`} 
+          options={foodFilterOptions} 
+          onChange={filterDealsByFoodType} 
+          value={foodFilter}
+          styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+        />
+        
+        <Select 
+          options={areaFilterOptions} 
+          onChange={filterDealsByArea} 
+          value={areaFilter} 
+          styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+        />
       </div>
 
       <div className='products-container' >
