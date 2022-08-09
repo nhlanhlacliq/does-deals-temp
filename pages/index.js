@@ -102,6 +102,7 @@ const Home = ({ products, deals, bannerData }) => {
           onChange={filterDealsByDay} 
           value={dayFilter}
           styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+          isSearchable={false}
         />
 
         <Select key={`select-${foodFilter}`} 
