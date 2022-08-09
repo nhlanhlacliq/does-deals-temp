@@ -43,18 +43,38 @@ export const parseDays = (array) => {
 };
 
 export const parseFoodTypes = (deals) => {
-  return [
-    { label: 'All food types', value: 'all-types'}
-  ].concat(deals.map(d => d.food).flat());
+    const foodTypes = deals.map(d => {
+            return d.food
+        }).flat();
+    
+    // Done to remove duplicates
+    const foodTypeList = Array.from(new Set(foodTypes.map(t => t.value)));
+
+    const types = [
+        { label: 'All food types', value: 'all-types'}
+        ].concat(foodTypeList.map(t => {
+        return {
+            label: `${t}`,
+            value: `${t.replace(' ', '-')}`
+        }
+    }))
+
+    return types
 }
 
 export const parseAreas = (deals) => {
-    return [
-      { label: 'All areas', value: 'all-areas'}
-    ].concat(deals.map(d => {
-        return {
-            label: `${d.area}`,
-            value: `${d.area.replace(' ', '-').toLowerCase()}`
-        }
-    }));
+    
+    // Done to remove duplicates
+    const areasList = Array.from(new Set(deals.map(d => d.area)))
+    
+    const areas = [
+        { label: 'All areas', value: 'all-areas'}
+        ].concat(areasList.map(a => {
+            return {
+                label: `${a}`,
+                value: `${a.replace(' ', '-').toLowerCase()}`
+            }
+        })); 
+    
+    return areas; 
 }
