@@ -1,22 +1,32 @@
 import React, { useState } from 'react';
 import { client, urlFor } from '../../lib/client';
-import { AiFillStar, AiOutlineStar, BsStarHalf }from 'react-icons/ai'
+import { AiFillStar, AiOutlineStar, AiFillCalendar, AiFillEnvironment }from 'react-icons/ai'
 
 import { Deal } from '../../components';
 
 const DealDetails = ({ deal, deals }) => {
-    const { image, 
+    const { _id, 
+            image, 
             restaurant, 
             special, 
             days, 
             location,
-            rating } = deal;
+            area,
+            rating, details } = deal;
     const [ index, setIndex ] = useState(0);
     
     let starRating = Array.from('1'.repeat(Number(rating.value)));
     while (starRating.length < 5) {
         starRating.push(0);
     }
+
+    const similarDeals = deals.filter(d => 
+        d.restaurant === restaurant && d._id !== _id
+    )
+    
+    const otherDeals = deals.filter(d => 
+        d.restaurant !== restaurant
+    )
 
     return (
     <div>
@@ -43,7 +53,6 @@ const DealDetails = ({ deal, deals }) => {
                 <div className='product-detail-desc' >
                     <h1>{restaurant}</h1>
                     
-                    {/* TODO: */}
                     <div className='reviews' >
                         <div>
                             {starRating.map(star => 
@@ -55,15 +64,27 @@ const DealDetails = ({ deal, deals }) => {
                     </div>
                     <h4>Details: </h4>
                     <p>{special}</p>
+                    {details && <p><em> {details} </em></p>}
                     
                     {/* TODO: */}
-                    <p className='price' > {days.map(day => (
-                        day === days[days.length - 1] ?
-                        day.label :
-                        day.label + ', '
-                    ))} </p>
-                    
+                    <div className='days' >
+                        <p className='price' > 
+                            <AiFillCalendar/> <span></span>
+                            {days.map(day => (
+                                day === days[days.length - 1] ?
+                                day.label :
+                                day.label + ', '
+                            ))}
+                        </p>
+                    </div>
 
+                    <div className='area' >
+                            <p className='price'> 
+                                <AiFillEnvironment/> <span></span>
+                                {area}
+                            </p>
+                    </div>
+                    
                     {/* TODO: */}
                     {/* <div className='quantity'>
                         <h3>Quantity:</h3>
@@ -79,7 +100,7 @@ const DealDetails = ({ deal, deals }) => {
                             </span>
                         </p>
                     </div> */}
-                    {console.log(location)}
+                    {/* {console.log(location)} */}
 
                     {/* TODO: */}
                     <div className='buttons' >
@@ -93,14 +114,24 @@ const DealDetails = ({ deal, deals }) => {
 
                 </div>
         </div>
+        
+        { similarDeals && 
+            <div className='other-products-wrapper'>
+                <h2>Other deals</h2>
+                <div className='products-container' >
+                    {similarDeals?.map((deal) => 
+                    <Deal key={deal._id} deal={deal}/>
+                    )}
+                </div>
+            </div>
+        }
 
         <div className='maylike-products-wrapper' >
             <h2>You may also like</h2>
             <div className='marquee' >
                 <div className='maylike-products-container track' >
-                    {deals.map((d) => ( deal._id !== d._id 
-                        ? <Deal key={d._id} deal={d} /> 
-                        : null
+                    {otherDeals.map((d) => (
+                        <Deal key={d._id} deal={d} /> 
                     ))}
                 </div>
             </div>
