@@ -53,6 +53,7 @@ export default  {
             name: 'area',
             title: '(Manual) Restaurant Area/Location',
             type: 'string',
+            validation: Rule => Rule.required().warning(),
         },
         {
             name: 'days',
@@ -78,6 +79,7 @@ export default  {
             name: 'food',
             title: 'Food type',
             type: 'tags',
+            validation: Rule => Rule.required().warning(),
         },
         {
             name: 'rating',
@@ -91,7 +93,8 @@ export default  {
                     {label: '4', value: '4'},
                     {label: '5', value: '5'},
                 ],
-            }
+            },
+            validation: Rule => Rule.required().warning(),
         },
         {
             name: 'details',
