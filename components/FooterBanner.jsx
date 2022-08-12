@@ -7,7 +7,7 @@ const FooterBanner = ({ footerBanner: {
   midText, product, desc, buttonText, image } }) => {
   return (
     <div className='footer-banner-container' >
-      <div className='banner-desc' >
+      <div className='footer-banner-desc' >
         <div className='left' >
           <p>{discount}</p>
           <h3>{largeText1}</h3>

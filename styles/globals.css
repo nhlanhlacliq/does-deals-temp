@@ -159,6 +159,7 @@ width: 100%;
 }
 
 .hero-banner-container{
+  /* padding: 100px 40px; */
   padding: 100px 40px;
   background-color: #dcdcdc;
   border-radius: 15px;
@@ -168,10 +169,20 @@ width: 100%;
   width: 100%;
   z-index: 0;
 }
-.hero-banner-container .beats-solo{
+.hero-banner-container .banner-small-text{
   font-size: 20px;
   z-index: 0;
+  color: #eee;
+  font-weight: 500;
 }
+.hero-banner-container .banner-mid-text{
+  color: var(--main);
+}
+
+.hero-banner-container .banner-large-text{
+  color: white;
+}
+
 .hero-banner-container button{
    border-radius: 15px;
   padding: 10px 16px;
@@ -180,7 +191,7 @@ width: 100%;
   border: none;
   margin-top: 40px;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   z-index:10000 !important;
 }
@@ -199,14 +210,24 @@ width: 100%;
 }
 .hero-banner-image{
   position: absolute;
+  /* position: relative; */
   top: 0%;
-  right:20%;
-  width: 450px;
-  height: 450px;
+  left: 0%;
+
+  /* right:20%; */
+  /* width: 450px; */
+  /* height: 450px; */
+  /* height: 200%; */
   z-index: -1;
+  border-radius: 1%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  filter: blur(4px) brightness(50%);
+  background-blend-mode: multiply;
 }
 
-.desc{
+.banner-desc{
 position: absolute;
 right: 10%;
 bottom: 5%;
@@ -214,15 +235,17 @@ width: 300px;
 line-height: 1.3;
 display: flex;
 flex-direction: column;
- color: #324d67;
+ /* color: #324d67; */
+ color: #aaa;
 
 }
-.desc p{
-  color: #5f5f5f;
-  font-weight: 100;
-text-align: end;
+.banner-desc p{
+  /* color: #5f5f5f; */
+  color: #ddd;
+  font-weight: 400;
+  text-align: end;
 }
-.desc h5{
+.banner-desc h5{
   margin-bottom: 12px;
   font-weight: 700;
   font-size: 16px;
@@ -255,11 +278,11 @@ text-align: end;
   margin-top: 120px;
   z-index: 0;
 }
-.banner-desc{
+.footer-banner-desc{
   display: flex ;
   justify-content: space-between;
 }
-.banner-desc button{
+.footer-banner-desc button{
   border-radius: 15px;
   padding: 10px 16px;
   background-color: white;
@@ -270,12 +293,12 @@ text-align: end;
   font-weight: 500;
   cursor: pointer;
 }
-.banner-desc .left h3{
+.footer-banner-desc .left h3{
   font-weight: 900;
   font-size: 80px;
   margin-left: 25px;
 }
-.banner-desc .left p{
+.footer-banner-desc .left p{
   margin:18px;
 }
 .footer-banner-image{
@@ -286,17 +309,17 @@ text-align: end;
   left: 25%;
   z-index: -1;
 }
-.banner-desc .right{
+.footer-banner-desc .right{
   line-height: 1.4;
 }
-.banner-desc .right h3{
+.footer-banner-desc .right h3{
   font-weight: 800;
   font-size: 60px;
 }
-.banner-desc .right p{
+.footer-banner-desc .right p{
   font-size: 18px;
 }
-.banner-desc .right .company-desc{
+.footer-banner-desc .right .company-desc{
   font-size: 14px;
   font-weight: 300;
 }
