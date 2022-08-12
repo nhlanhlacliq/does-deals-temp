@@ -115,7 +115,7 @@ const DealDetails = ({ deal, deals }) => {
                 </div>
         </div>
         
-        { similarDeals && 
+        { similarDeals.length > 0 && 
             <div className='other-products-wrapper'>
                 <h2>Other deals</h2>
                 <div className='products-container' >
