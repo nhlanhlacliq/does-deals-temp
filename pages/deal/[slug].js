@@ -133,6 +133,12 @@ const DealDetails = ({ deal, deals }) => {
                     {otherDeals.map((d) => (
                         <Deal key={d._id} deal={d} /> 
                     ))}
+                    
+                    {/* Duplicated to prevent scrolling deals from having
+                        whitespace gap inbetween last and fist deal */}
+                    {otherDeals.map((d) => (
+                        <Deal key={d._id} deal={d} /> 
+                    ))}
                 </div>
             </div>
         </div>
