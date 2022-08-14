@@ -12,6 +12,7 @@
     "@sanity/client": "^3.2.0",
     "@sanity/image-url": "1.0.1",
     "@stripe/stripe-js": "1.32.0",
+    "boxicons": "^2.1.2",
     "canvas-confetti": "^1.5.1",
     "next": "12.2.2",
     "next-sanity-image": "^3.2.1",
@@ -20,6 +21,7 @@
     "react-hot-toast": "2.3.0",
     "react-icons": "^4.4.0",
     "react-select": "^5.4.0",
+    "remixicon": "^2.5.0",
     "stripe": "9.14.0"
   },
   "devDependencies": {
