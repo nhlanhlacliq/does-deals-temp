@@ -1,30 +1,20 @@
+import { RiAdvertisementLine } from "react-icons/ri";
+
 export default {
     name: 'banner',
-    title: 'Banner',
+    title: 'Banner Deal',
     type: 'document',
+    icon: RiAdvertisementLine,
     fields: [
         {
-            name: 'image',
-            title: 'Image',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
+            name: 'deal',
+            Title: 'Deal',
+            type: 'reference',
+            to: [{type: 'deal'}]
         },
         {
             name: 'buttonText',
             title: 'ButtonText',
-            type: 'string',
-        },
-        {
-            name: 'product',
-            title: 'Product',
-            type: 'string',
-            description: 'Use the \'slug\' from a deal so that the banner links to the actual deal.', 
-        },
-        {
-            name: 'desc',
-            title: 'Desc',
             type: 'string',
         },
         {

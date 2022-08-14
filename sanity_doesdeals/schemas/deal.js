@@ -1,7 +1,11 @@
+import { BiRightArrow } from 'react-icons/bi';
+import { asyncSlugifier, capitalize } from './helper/helpers';
+
 export default  {
     name: 'deal',
     title: 'Deal',
     type: 'document',
+    icon: BiRightArrow,
     description: 'Keep track of a restaurant\'s deals',
 
     fields: [
@@ -19,14 +23,8 @@ export default  {
         {
             name: 'restaurant',
             title: 'Restaurant',
-            type: 'string',
-           
-            // type: 'tag',
-            // Errors: No 'min' on object. This is due to using the tag object. 
-            // validation: Rule => Rule.required().min(2).warning("Minimum of 2 characters are required"),
-            // options: {
-            //     includeFromRelated: true
-            // }
+            type: 'reference',
+            to: [{type: 'restaurant'}]
         },
         {
             name: 'special',
@@ -40,20 +38,10 @@ export default  {
             type: 'slug',
             description: 'Click \'Generate\'. This will be the deal\'s URL',
             options: {
-                source: doc => `${doc.restaurant}-${doc.special}`,
+                source: (doc, options) => ({ doc, options }),
+                slugify: asyncSlugifier,
                 maxLength: 90,
             }
-        },
-        {
-            name: 'location',
-            title: '(GoogleMap) Restaurant Location',
-            type: 'geopoint',
-        },
-        {
-            name: 'area',
-            title: '(Manual) Restaurant Area/Location',
-            type: 'string',
-            validation: Rule => Rule.required().warning(),
         },
         {
             name: 'days',
@@ -78,7 +66,8 @@ export default  {
         {
             name: 'food',
             title: 'Food type',
-            type: 'tags',
+            type: 'reference',
+            to: [{type: 'foodType'}],
             validation: Rule => Rule.required().warning(),
         },
         {
@@ -101,6 +90,19 @@ export default  {
             title: 'Details',
             description: 'Any extra details on the special',
             type: 'text',
+        },
+    ],
+    preview: {
+        select: {
+            title: 'special',
+            slug: 'slug'
+        },
+        prepare(selection) {
+            const {title, slug} = selection
+            return {
+                title: capitalize(slug.current.split('/')[0]),
+                subtitle: title,
+            }
         }
-    ]
+    }
 }

@@ -1,15 +1,19 @@
 import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
-// import product from './product';
 import banner from './banner';
 import deal from './deal';
+import foodType from './foodType';
+import location from './location';
+import restaurant from './restaurant';
 
 export default createSchema({
-  name: 'default',
+  name: 'Deals',
   types: schemaTypes.concat([
-    // product, 
     banner, 
-    deal
+    deal,
+    restaurant,
+    location,
+    foodType
   ]),
 })
