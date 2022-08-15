@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { client } from '../lib/client';
 
-import { Product, Deal, FooterBanner, HeroBanner } from '../components';  
+import { Deal, FooterBanner, HeroBanner } from '../components';  
 import Select from 'react-select';
-import { parseDays, 
-  dayFilterOptions, parseFoodTypes, parseAreas } from '../utils/helpers';
+import { parseDays, dayFilterOptions, parseFoodTypes, parseAreas } from '../utils/helpers';
 import { customStyles } from '../utils/styles'; 
 
-const Home = ({ products, deals, bannerData }) => {
+const Home = ({ deals, bannerData }) => {
+
   const [ filteredDeals, setFilteredDeals ] = useState(deals);
   
   const foodFilterOptions = parseFoodTypes(filteredDeals);
@@ -18,9 +18,10 @@ const Home = ({ products, deals, bannerData }) => {
   const [ areaFilter, setAreaFilter ] = useState(areaFilterOptions[0]);
   
   /**
-   * Currently disabled
-   * 
-   */
+  * Currently disabled
+  * 
+  */ 
+   
   // const [ location, setLocation ] = useState(null);
 
   // useEffect(() => {
@@ -46,6 +47,7 @@ const Home = ({ products, deals, bannerData }) => {
   // }, [])
 
   // console.log(location);
+
 
   const filterDealsByDay = (day) => {
     setDayFilter(day);
@@ -75,13 +77,13 @@ const Home = ({ products, deals, bannerData }) => {
     
     if (foodFilter.value !== 'all-types'){
       filterList = filterList.filter(d => 
-        JSON.stringify(d.food.flat()).includes(JSON.stringify(foodFilter))
+        d.food.type.includes(foodFilter.value)
       );
     }
 
     if (areaFilter.value !== 'all-areas'){
       filterList = filterList.filter(d => 
-        d.area.includes(areaFilter.label)
+        d.restaurant.area.area.includes(areaFilter.label)
       );
     }
 
@@ -133,17 +135,31 @@ const Home = ({ products, deals, bannerData }) => {
 }
 
 export const getServerSideProps  = async () => {
-  const query = '*[_type == "product"]';
-  const products = await client.fetch(query);
-  
-  const dealsQuery = '*[_type == "deal"]';
+  const dealsQuery = `*[_type == "deal"] {
+      ...,
+      food->,
+      restaurant->{
+        ...,
+        area->
+      }
+    }`;
   const deals = await client.fetch(dealsQuery);
   
-  const bannerQuery = '*[_type == "banner"]';
+  const bannerQuery = `*[_type == "banner"]{
+    ...,
+    deal->{
+      ...,
+      food->,
+      restaurant->{
+        ...,
+        area->
+      }
+    }
+  }`;
   const bannerData = await client.fetch(bannerQuery);
 
   return {
-    props: { products, deals, bannerData }
+    props: { deals, bannerData }
   }
 }
 
