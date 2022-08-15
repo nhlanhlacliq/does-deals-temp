@@ -14,7 +14,7 @@ const Deal = ({ deal: { image, restaurant, special, slug, days } }) => {
             height={250}
             className='product-image'
           />
-          <p className='product-name'>{restaurant}</p>
+          <p className='product-name'>{restaurant.name}</p>
           <p className='product-price'>{special}</p>
         </div>
       </Link>
