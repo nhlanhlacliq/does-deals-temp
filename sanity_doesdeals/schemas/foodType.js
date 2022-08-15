@@ -8,8 +8,8 @@ export default  {
 
     fields: [
         {
-            name: 'food',
-            title: 'Food',
+            name: 'type',
+            title: 'Type',
             type: 'string',
             validation: Rule => Rule.required().warning()
         }
