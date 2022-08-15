@@ -43,12 +43,13 @@ export const parseDays = (array) => {
 };
 
 export const parseFoodTypes = (deals) => {
-    const foodTypes = deals.map(d => {
-            return d.food
+    const availableFood = deals.map(d => {
+            return d.food.type
         }).flat();
     
+        
     // Done to remove duplicates
-    const foodTypeList = Array.from(new Set(foodTypes.map(t => t.value)));
+    const foodTypeList = Array.from(new Set(availableFood));
 
     const types = [
         { label: 'All food types', value: 'all-types'}
@@ -65,8 +66,8 @@ export const parseFoodTypes = (deals) => {
 export const parseAreas = (deals) => {
     
     // Done to remove duplicates
-    const areasList = Array.from(new Set(deals.map(d => d.area)))
-    
+    const areasList = Array.from(new Set(deals.map(d => d.restaurant.area.area)))
+
     const areas = [
         { label: 'All areas', value: 'all-areas'}
         ].concat(areasList.map(a => {
