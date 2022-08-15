@@ -1,4 +1,5 @@
 import { RiAdvertisementLine } from "react-icons/ri";
+import { getDealInfo } from './helper/helpers';
 
 export default {
     name: 'banner',
@@ -12,6 +13,10 @@ export default {
             type: 'reference',
             to: [{type: 'deal'}]
         },
+        // {
+        //     name: 'slug',
+            
+        // },
         {
             name: 'buttonText',
             title: 'ButtonText',
@@ -47,5 +52,15 @@ export default {
             title: 'SaleTime',
             type: 'string',
         },
+        {
+            name: 'desc',
+            title: 'Desciption',
+            type: 'string'
+        }
     ],
+    preview: {
+        select: {
+            title: 'smallText',
+        },
+    }
 };
