@@ -100,8 +100,9 @@ export default  {
         prepare(selection) {
             const {title, slug} = selection
             return {
-                title: capitalize(slug.current.split('/')[0]),
+                title: capitalize(slug.current.split('--')[0]).replaceAll('-',' '),
                 subtitle: title,
+                media: 'image'
             }
         }
     }
