@@ -20,7 +20,9 @@ export const asyncSlugifier = async (input) => {
     const dealSlug = input.doc.special
     .toLowerCase()
     .replace(/\s+/g, '-') // slugify the title using a simple regex
-    .slice(0, 200);
+    .slice(0, 200)
+    .replaceAll('%', '');
+
   return `${restaurantSlug}--${dealSlug}`;
 }
 
