@@ -1,32 +1,74 @@
 import React, { useState } from 'react';
 import { client, urlFor } from '../../lib/client';
 import { AiFillStar, AiOutlineStar, AiFillCalendar, AiFillEnvironment }from 'react-icons/ai'
+import Select from 'react-select';
 
 import { Deal } from '../../components';
+import { BiFoodMenu } from 'react-icons/bi';
 
 const DealDetails = ({ deal, deals }) => {
     const { _id, 
             image, 
             restaurant, 
-            special, 
+            special,
+            food, 
             days, 
-            location,
-            area,
-            rating, details } = deal;
+            rating, 
+            details } = deal;
     const [ index, setIndex ] = useState(0);
     
+    const otherOptions = []
+        .concat(restaurant.area.area)
+        .concat(food.type)
+    
+    const shownDealOptions = [{
+        label: 'Other', value: 'Other'
+    }].concat(otherOptions.map(o => ({
+        label: `${o}`,
+        value: `${o}`,
+    })))
+    const [ shownDeals, setShownDeals ] = useState(shownDealOptions[0]);
+    
+    console.log(shownDealOptions);
+
     let starRating = Array.from('1'.repeat(Number(rating.value)));
     while (starRating.length < 5) {
         starRating.push(0);
     }
 
-    const similarDeals = deals.filter(d => 
-        d.restaurant === restaurant && d._id !== _id
-    )
-    
-    const otherDeals = deals.filter(d => 
-        d.restaurant !== restaurant
-    )
+    const dealsInSameShop = deals.filter(d => 
+        d.restaurant.name === restaurant.name && d._id !== _id
+    );
+
+    const dealsInSameArea = deals.filter(d => 
+        d.restaurant.area.area === restaurant.area.area && d._id !== _id
+    );
+
+    const dealsWithSameFood = deals.filter(d => 
+        d.food.type === food.type && d._id !== _id
+    );
+
+    const coveredDealIds = [_id]
+        .concat(dealsInSameShop.map(d => d._id))
+        .concat(dealsInSameArea.map(d => d._id))
+        .concat(dealsWithSameFood.map(d => d._id));
+
+    const otherDeals = deals.filter(d =>
+        !coveredDealIds.includes(d._id)
+    );
+
+
+    const onSelectChange = (e) => { 
+        switch (e.value){
+            case (food.type):
+                setShownDeals(shownDealOptions[2]);
+            case (restaurant.area.name):
+                setShownDeals(shownDealOptions[1]);
+            default:
+                setShownDeals(shownDealOptions[0]);
+        }
+        console.log(shownDeals);
+    }
 
     return (
     <div>
@@ -51,7 +93,7 @@ const DealDetails = ({ deal, deals }) => {
             : <p> Loading images... </p>
             }
                 <div className='product-detail-desc' >
-                    <h1>{restaurant}</h1>
+                    <h1>{restaurant.name}</h1>
                     
                     <div className='reviews' >
                         <div>
@@ -62,6 +104,8 @@ const DealDetails = ({ deal, deals }) => {
                         </div>
                     {/* <p> (20) </p> */}
                     </div>
+                    <p><BiFoodMenu/>{food.type}</p>
+                    <br/>
                     <h4>Details: </h4>
                     <p>{special}</p>
                     {details && <p><em> {details} </em></p>}
@@ -81,26 +125,9 @@ const DealDetails = ({ deal, deals }) => {
                     <div className='area' >
                             <p className='price'> 
                                 <AiFillEnvironment/> <span></span>
-                                {area}
+                                {restaurant.area.area}
                             </p>
                     </div>
-                    
-                    {/* TODO: */}
-                    {/* <div className='quantity'>
-                        <h3>Quantity:</h3>
-                        <p className='quantity-desc' >
-                            <span className='minus' onClick=''>
-                                <AiOutlineMinus/>
-                            </span>
-                            <span className='num'>
-                                0
-                            </span>
-                            <span className='plus' onClick=''>
-                                <AiOutlinePlus/>
-                            </span>
-                        </p>
-                    </div> */}
-                    {/* {console.log(location)} */}
 
                     {/* TODO: */}
                     <div className='buttons' >
@@ -115,19 +142,31 @@ const DealDetails = ({ deal, deals }) => {
                 </div>
         </div>
         
-        { similarDeals.length > 0 && 
+        { dealsInSameShop.length > 0 && 
             <div className='other-products-wrapper'>
-                <h2>Other deals</h2>
+                <h2>Our other deals</h2>
                 <div className='products-container' >
-                    {similarDeals?.map((deal) => 
+                    {dealsInSameShop?.map((deal) => 
                     <Deal key={deal._id} deal={deal}/>
                     )}
                 </div>
             </div>
         }
 
+            
+
         <div className='maylike-products-wrapper' >
-            <h2>You may also like</h2>
+            <h2>
+                <Select 
+                    options={shownDealOptions} 
+                    onChange={onSelectChange} 
+                    value={shownDeals}
+                    // styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+                    isSearchable={false}
+                /> 
+                deals 
+            </h2>
+            
             <div className='marquee' >
                 <div className='maylike-products-container track' >
                     {otherDeals.map((d) => (
@@ -171,8 +210,22 @@ export const getStaticPaths = async () => {
 } 
 
 export const getStaticProps = async ({ params: { slug } }) => {
-    const dealQuery = `*[_type == "deal" && slug.current == '${slug}'][0]`;
-    const dealsQuery =  '*[_type == "deal"]';
+    const dealQuery = `*[_type == "deal" && slug.current == '${slug}'][0]{
+        ...,
+        food->,
+        restaurant->{
+            ...,
+            area->
+        }
+    }`;
+    const dealsQuery =  `*[_type == "deal"]{
+        ...,
+        food->,
+        restaurant->{
+            ...,
+            area->
+        }
+    }`;
 
     const deal = await client.fetch(dealQuery);
     const deals = await client.fetch(dealsQuery);
