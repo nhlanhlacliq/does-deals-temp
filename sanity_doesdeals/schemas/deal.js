@@ -8,6 +8,8 @@ export default  {
     icon: BiRightArrow,
     description: 'Keep track of a restaurant\'s deals',
 
+
+    
     fields: [
         {
             name: 'image',
