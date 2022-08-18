@@ -5,6 +5,7 @@ import Select from 'react-select';
 
 import { Deal } from '../../components';
 import { BiFoodMenu } from 'react-icons/bi';
+import { useEffect } from 'react';
 
 const DealDetails = ({ deal, deals }) => {
     const { _id, 
@@ -29,7 +30,7 @@ const DealDetails = ({ deal, deals }) => {
     })))
     const [ shownDeals, setShownDeals ] = useState(shownDealOptions[0]);
     
-    console.log(shownDealOptions);
+    // console.log(shownDealOptions);
 
     let starRating = Array.from('1'.repeat(Number(rating.value)));
     while (starRating.length < 5) {
@@ -57,18 +58,38 @@ const DealDetails = ({ deal, deals }) => {
         !coveredDealIds.includes(d._id)
     );
 
-
     const onSelectChange = (e) => { 
-        switch (e.value){
-            case (food.type):
-                setShownDeals(shownDealOptions[2]);
-            case (restaurant.area.name):
-                setShownDeals(shownDealOptions[1]);
-            default:
-                setShownDeals(shownDealOptions[0]);
+        if (e.value === food.type){
+            // setShownDeals(dealsWithSameFood);
+            setShownDeals(shownDealOptions[2]);
         }
-        console.log(shownDeals);
+        else if (e.value === restaurant.area.area) {
+            // setShownDeals(dealsInSameArea);
+            setShownDeals(shownDealOptions[1]);
+        }
+        else {
+            // setShownDeals(otherDeals);
+            setShownDeals(shownDealOptions[0]);
+        }
+        // console.log(shownDeals);
     }
+
+    let filteredDeals = otherDeals;
+
+    useEffect(() => {
+        // console.log(shownDeals);
+        if (shownDeals.value === food.type) {
+            filteredDeals = dealsWithSameFood;
+        }
+        else if (shownDeals.value === restaurant.area.area) {
+            filteredDeals = dealsInSameArea;
+        }
+        else {
+            filteredDeals = otherDeals;
+        }
+    },[shownDeals, filteredDeals]);
+
+    console.log(filteredDeals);
 
     return (
     <div>
@@ -138,7 +159,6 @@ const DealDetails = ({ deal, deals }) => {
                             Visit now
                         </button>
                     </div>
-
                 </div>
         </div>
         
@@ -152,8 +172,6 @@ const DealDetails = ({ deal, deals }) => {
                 </div>
             </div>
         }
-
-            
 
         <div className='maylike-products-wrapper' >
             <h2>
