@@ -6,6 +6,7 @@ import Select from 'react-select';
 import { Deal } from '../../components';
 import { BiFoodMenu } from 'react-icons/bi';
 import { useEffect } from 'react';
+import { customStylesSlug } from '../../utils/styles';
 
 const DealDetails = ({ deal, deals }) => {
     const { _id, 
@@ -17,20 +18,6 @@ const DealDetails = ({ deal, deals }) => {
             rating, 
             details } = deal;
     const [ index, setIndex ] = useState(0);
-    
-    const otherOptions = []
-        .concat(restaurant.area.area)
-        .concat(food.type)
-    
-    const shownDealOptions = [{
-        label: 'Other', value: 'Other'
-    }].concat(otherOptions.map(o => ({
-        label: `${o}`,
-        value: `${o}`,
-    })))
-    const [ shownDeals, setShownDeals ] = useState(shownDealOptions[0]);
-    
-    // console.log(shownDealOptions);
 
     let starRating = Array.from('1'.repeat(Number(rating.value)));
     while (starRating.length < 5) {
@@ -49,6 +36,28 @@ const DealDetails = ({ deal, deals }) => {
         d.food.type === food.type && d._id !== _id
     );
 
+    /**
+     * React select
+     */
+    const otherOptions = []
+    .concat(restaurant.area.area)
+    .concat(food.type)
+
+    const shownDealOptions = [{
+        label: 'Other', value: 'Other'
+    }].concat(otherOptions.map(o => ({
+        label: `${o}`,
+        value: `${o}`,
+        isDisabled: o == restaurant.area.area 
+        ?   dealsInSameArea.length > 0 ? false : true
+        :   dealsWithSameFood.length > 0 ? false : true
+    })))
+    const [ shownDeals, setShownDeals ] = useState(shownDealOptions[0]);
+    
+    
+    /**
+     * Deal filterings
+     */
     const coveredDealIds = [_id]
         .concat(dealsInSameShop.map(d => d._id))
         .concat(dealsInSameArea.map(d => d._id))
@@ -74,22 +83,22 @@ const DealDetails = ({ deal, deals }) => {
         // console.log(shownDeals);
     }
 
-    let filteredDeals = otherDeals;
+    const [filteredDeals, setFilteredDeals] = useState(otherDeals);
 
     useEffect(() => {
-        // console.log(shownDeals);
+
         if (shownDeals.value === food.type) {
-            filteredDeals = dealsWithSameFood;
+            setFilteredDeals(dealsWithSameFood);
         }
         else if (shownDeals.value === restaurant.area.area) {
-            filteredDeals = dealsInSameArea;
+            setFilteredDeals(dealsInSameArea);
         }
         else {
-            filteredDeals = otherDeals;
+            setFilteredDeals(otherDeals);
         }
-    },[shownDeals, filteredDeals]);
 
-    console.log(filteredDeals);
+    },[shownDeals ]);
+
 
     return (
     <div>
@@ -179,21 +188,21 @@ const DealDetails = ({ deal, deals }) => {
                     options={shownDealOptions} 
                     onChange={onSelectChange} 
                     value={shownDeals}
-                    // styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+                    styles={customStylesSlug}
                     isSearchable={false}
-                /> 
+                />
                 deals 
             </h2>
             
             <div className='marquee' >
                 <div className='maylike-products-container track' >
-                    {otherDeals.map((d) => (
+                    {filteredDeals.map((d) => (
                         <Deal key={d._id} deal={d} /> 
                     ))}
                     
                     {/* Duplicated to prevent scrolling deals from having
                         whitespace gap inbetween last and fist deal */}
-                    {otherDeals.map((d) => (
+                    {filteredDeals.map((d) => (
                         <Deal key={d._id} deal={d} /> 
                     ))}
                 </div>
