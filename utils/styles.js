@@ -16,7 +16,7 @@ const dot = (color = 'transparent') => ({
     },
 });
 
-export const customStyles = (dayFilterOptions, foodFilterOptions, areaFilterOptions) => {
+export const customStylesHome = (dayFilterOptions, foodFilterOptions, areaFilterOptions) => {
     return {
         singleValue: (styles, { data }) => {
             const dataStr = JSON.stringify(data);
@@ -43,5 +43,22 @@ export const customStyles = (dayFilterOptions, foodFilterOptions, areaFilterOpti
             }
         }
     }
+}
+
+export const customStylesSlug = {
+    container: (provided, state) => ({
+        ...provided,
+        paddingRight: 10,
+    }),
+    control: (provided, state) => ({
+        ...provided,
+        borderTop: 'none',
+        borderLeft: 'none',
+        borderRight: 'none',
+    }),
+    placeholder: (provided, state) => ({
+        ...provided,
+        color: '#ffffff', // ????
+    })
 }
 
