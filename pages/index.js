@@ -4,7 +4,7 @@ import { client } from '../lib/client';
 import { Deal, FooterBanner, HeroBanner } from '../components';  
 import Select from 'react-select';
 import { parseDays, dayFilterOptions, parseFoodTypes, parseAreas } from '../utils/helpers';
-import { customStyles } from '../utils/styles'; 
+import { customStylesHome } from '../utils/styles'; 
 
 const Home = ({ deals, bannerData }) => {
 
@@ -103,7 +103,7 @@ const Home = ({ deals, bannerData }) => {
           options={dayFilterOptions} 
           onChange={filterDealsByDay} 
           value={dayFilter}
-          styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+          styles={customStylesHome(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
           isSearchable={false}
         />
 
@@ -111,14 +111,14 @@ const Home = ({ deals, bannerData }) => {
           options={foodFilterOptions} 
           onChange={filterDealsByFoodType} 
           value={foodFilter}
-          styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+          styles={customStylesHome(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
         />
         
         <Select 
           options={areaFilterOptions} 
           onChange={filterDealsByArea} 
           value={areaFilter} 
-          styles={customStyles(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
+          styles={customStylesHome(dayFilterOptions, foodFilterOptions, areaFilterOptions)}
         />
       </div>
 
