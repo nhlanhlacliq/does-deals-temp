@@ -56,9 +56,9 @@ export const customStylesSlug = {
         borderLeft: 'none',
         borderRight: 'none',
     }),
-    placeholder: (provided, state) => ({
+    singleValue: (provided, state) => ({
         ...provided,
-        color: '#ffffff', // ????
+        color: '#324d67', // ????
     })
 }
 
