@@ -2,6 +2,8 @@
   --main: #207f7f;
   --main-prev: #f02d34;
   --secondary: #324d67;
+  --marquee-elements: 9;
+  --marquee-anim-duration: calc(var(--marquee-elements)*1.5s);
 }
 
 html,
@@ -75,8 +77,9 @@ width: 100%;
   white-space: nowrap;
   will-change: transform;
   /* animation: marquee 15s linear infinite; */
-  animation: marquee 15s linear infinite;
-  width: 198%;
+  animation: marquee var(--marquee-anim-duration) linear infinite;
+  /* width: 198%; */
+  /* width: 200%; */
 }
 /* .track {
   animation: marquee 10s linear infinite;
@@ -86,8 +89,8 @@ width: 100%;
   animation-play-state: paused;
 }
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  0% { transform: translateX(0%); } 
+  100% { transform: translateX(-50%); }
 }
 
  span.text-red {
