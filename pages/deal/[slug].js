@@ -100,6 +100,15 @@ const DealDetails = ({ deal, deals }) => {
     },[shownDeals ]);
 
 
+    const setMarqueeElements = () => {
+        if (typeof window !== "undefined") {
+            const root = document.documentElement;
+            // const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue('--marquee-elements');
+
+            root.style.setProperty('--marquee-elements', filteredDeals.length );
+        }
+    }
+
     return (
     <div>
         <div className='product-detail-container' >
@@ -197,7 +206,9 @@ const DealDetails = ({ deal, deals }) => {
             <div className='marquee' >
                 <div className={filteredDeals.length > 3 
                 ? 'maylike-products-container track'
-                : 'maylike-products-container'}>
+                : 'maylike-products-container'}
+                style={{"--marquee-elements": filteredDeals.length}}>
+                    {setMarqueeElements()}
                     {filteredDeals.map((d) => (
                         <Deal key={d._id} deal={d} /> 
                     ))}
