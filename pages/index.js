@@ -107,7 +107,8 @@ const Home = ({ deals, bannerData }) => {
           isSearchable={false}
         />
 
-        <Select key={`select-${foodFilter}`} 
+        {/* <Select key={`select-${foodFilter}`}  */}
+        <Select 
           options={foodFilterOptions} 
           onChange={filterDealsByFoodType} 
           value={foodFilter}
