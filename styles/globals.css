@@ -86,8 +86,8 @@ width: 100%;
   animation-play-state: paused;
 }
 @keyframes marquee {
-  from { transform: translateX(0%); }
-  to { transform: translateX(-100%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
  span.text-red {
@@ -139,10 +139,10 @@ width: 100%;
   width: 100%;
 }
 .product-card{
- cursor: pointer;
+  cursor: pointer;
   transform: scale(1, 1);
   transition: transform 0.5s ease;
- color: var(--secondary);
+  color: var(--secondary);
 
 }
 .product-card:hover{
@@ -150,7 +150,7 @@ width: 100%;
 }
 .product-image{
   border-radius: 15px;
- background-color: #ebebeb;
+  background-color: #ebebeb;
   transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
