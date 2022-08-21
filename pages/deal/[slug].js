@@ -25,15 +25,15 @@ const DealDetails = ({ deal, deals }) => {
     }
 
     const dealsInSameShop = deals.filter(d => 
-        d.restaurant.name === restaurant.name && d._id !== _id
+        (d.restaurant.name === restaurant.name) && (d._id !== _id)
     );
 
     const dealsInSameArea = deals.filter(d => 
-        d.restaurant.area.area === restaurant.area.area && d._id !== _id
+        (d.restaurant.area.area === restaurant.area.area) && (d._id !== _id)
     );
 
     const dealsWithSameFood = deals.filter(d => 
-        d.food.type === food.type && d._id !== _id
+        (d.food.type === food.type) && (d._id !== _id)
     );
 
     /**
@@ -195,14 +195,17 @@ const DealDetails = ({ deal, deals }) => {
             </h2>
             
             <div className='marquee' >
-                <div className='maylike-products-container track' >
+                <div className={filteredDeals.length > 3 
+                ? 'maylike-products-container track'
+                : 'maylike-products-container'}>
                     {filteredDeals.map((d) => (
                         <Deal key={d._id} deal={d} /> 
                     ))}
                     
                     {/* Duplicated to prevent scrolling deals from having
                         whitespace gap inbetween last and fist deal */}
-                    {filteredDeals.map((d) => (
+                    
+                    {filteredDeals.length > 3 && filteredDeals.map((d) => (
                         <Deal key={d._id} deal={d} /> 
                     ))}
                 </div>
