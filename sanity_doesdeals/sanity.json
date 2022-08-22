@@ -14,7 +14,8 @@
     "@sanity/desk-tool",
     "@sanity/google-maps-input",
     "tags",
-    "asset-source-unsplash"
+    "asset-source-unsplash",
+    "@indent-oss/sanityio-referenced-by"
   ],
   "env": {
     "development": {
@@ -27,6 +28,10 @@
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./sanity-structure.js"
     }
   ]
 }

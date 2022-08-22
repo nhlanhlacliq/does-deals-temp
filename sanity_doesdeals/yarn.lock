@@ -1157,6 +1157,11 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
 
+"@indent-oss/sanityio-referenced-by@^0.1.4":
+  "integrity" "sha512-DHt1Dvijwco+T3A+l/Lrmapil2c0uIxVH4zilqKFknNKzlwH5MBu7/NbBQs2DAfsk6TLPYwnqM47upeqg3tnxw=="
+  "resolved" "https://registry.npmjs.org/@indent-oss/sanityio-referenced-by/-/sanityio-referenced-by-0.1.4.tgz"
+  "version" "0.1.4"
+
 "@jridgewell/gen-mapping@^0.1.0":
   "integrity" "sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w=="
   "resolved" "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz"
