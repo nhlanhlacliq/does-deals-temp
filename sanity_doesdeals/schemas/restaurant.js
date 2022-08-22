@@ -42,10 +42,11 @@ export default  {
             to: [{type: 'location'}]
         },
         {
-            name: 'menu',
-            title: 'Menu',
-            type: 'file',
-            description: 'PDF'
+            name: 'website',
+            title: 'Website/Menu link',
+            type: 'url',
+            validation: Rule => Rule.required().warning(),
+            description: 'A link to the website or menu(pdf)'
         },
         {
             name: 'rating',
@@ -66,11 +67,6 @@ export default  {
             name: 'telephone',
             title: 'Telephone',
             type: 'string'
-        },
-        {
-            name: 'website',
-            title: 'Website',
-            type: 'url'
         },
         {
             name: 'details',
