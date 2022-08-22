@@ -170,12 +170,18 @@ const DealDetails = ({ deal, deals }) => {
 
                     {/* TODO: */}
                     <div className='buttons' >
-                        <button type='button' className='add-to-cart' onClick=''>
-                            Visit now
-                        </button>
-                        <button type='button' className='buy-now' onClick=''>
-                            Visit now
-                        </button>
+                        <a href={restaurant.website} target='_blank'>
+                            <button type='button' className='add-to-cart'>
+                                View site
+                            </button>
+                        </a>
+                        <a href='#' >
+                            <button type='button' className='buy-now'
+                            onClick={() => alert(`WIP: Locating to ${restaurant.area.area}`)}
+                            >
+                                Visit now
+                            </button>
+                        </a>
                     </div>
                 </div>
         </div>
