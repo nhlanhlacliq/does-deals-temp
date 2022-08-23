@@ -126,6 +126,7 @@ const Home = ({ deals, bannerData }) => {
       <div className='products-container' >
         {filteredDeals?.map(
           (deal) => <Deal 
+          
           key={deal._id} deal={deal}/>)
         }
       </div>
