@@ -22,7 +22,7 @@ const Navbar = () => {
         <AiOutlineUser />
       </button>
 
-      {modalOpen && <Modal closeModal={() => setModalOpen() }/>}
+      {modalOpen && <Modal closeModal={() => toggleModal()}/>}
 
     </div>
   )
