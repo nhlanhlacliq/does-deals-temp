@@ -1,12 +1,18 @@
 import React from 'react'
 import { useEffect } from 'react'
+import { AiOutlineCloseCircle, AiOutlineClose } from 'react-icons/ai';
 
 
 function Modal({ closeModal }) {
   return (
     <div className='modal-background' >
         <div className="modal-container">
-            <button className="modal-close" onClick={() => closeModal()}> X </button>
+            <div className="modal-close">
+                <button className="modal-close-button" onClick={() => closeModal()}>
+                    {/* <AiOutlineCloseCircle size={25} /> */}
+                    <AiOutlineClose size={25} />
+                </button>
+            </div>
             <div className="modal-title">
                 Sorry. This isn't implemented yet...
             </div>
