@@ -1,9 +1,10 @@
 :root {
   --main: #207f7f;
-  --main-prev: #f02d34;
+  /* --red: #f02d34; */
+  --red: crimson;
   --secondary: #324d67;
   --white: #fff;
-  --gray: 'gray';
+  --gray: gray;
   --card-white: #ebebeb;
   --darker-card-white: #dcdcdc;
 
@@ -46,16 +47,80 @@ width: 100%;
   position: relative;
 }
 
-.modal-background{
+.modal-background {
   width: 100vw;
   height: 100vh;
-  background-color: ;
+  left: 0;
+  top: 0;
+  background-color: rgba(1, 1 ,1 , 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
-.modal-container{}
-.modal-close{}
-.modal-title{}
-.modal-body{}
-.modal-footere{}
+
+.modal-container {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: var(--white);
+  box-shadow: var(--secondary) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modal-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-close-button {
+  width: 20px;
+  border: none;
+  background-color: transparent;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.modal-title{
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--main);
+}
+
+.modal-body{
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: larger;
+}
+
+.modal-footer{
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-footer button{
+  /* background-color: var(--main); */
+  background-color: var(--red);
+  border: none;
+  width: 120px;
+  height: 45px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--white);
+  font-size: larger;
+}
 
 .marquee-text{
   font-size: 29px;
