@@ -8,6 +8,8 @@ import { BiFoodMenu } from 'react-icons/bi';
 import { useEffect } from 'react';
 import { customStylesSlug } from '../../utils/styles';
 
+import { Modal } from '../../components';
+
 const DealDetails = ({ deal, deals }) => {
     const { _id, 
             image, 
@@ -35,6 +37,15 @@ const DealDetails = ({ deal, deals }) => {
     const dealsWithSameFood = deals.filter(d => 
         (d.food.type === food.type) && (d._id !== _id)
     );
+
+    /**
+     * State for modal. Temporary
+     */
+    const [ modalOpen, setModalOpen ] = useState(false);
+
+    const toggleModal = () => {
+      setModalOpen(!modalOpen)
+    }
 
     /**
      * React select
@@ -177,11 +188,12 @@ const DealDetails = ({ deal, deals }) => {
                         </a>
                         <a href='#' >
                             <button type='button' className='buy-now'
-                            onClick={() => alert(`WIP: Locating to ${restaurant.area.area}`)}
+                            onClick={() => toggleModal()}
                             >
                                 Visit now
                             </button>
                         </a>
+                        { modalOpen && <Modal closeModal={() => toggleModal()} /> }
                     </div>
                 </div>
         </div>

@@ -1,7 +1,13 @@
 :root {
   --main: #207f7f;
-  --main-prev: #f02d34;
+  /* --red: #f02d34; */
+  --red: crimson;
   --secondary: #324d67;
+  --white: #fff;
+  --gray: gray;
+  --card-white: #ebebeb;
+  --darker-card-white: #dcdcdc;
+
   --marquee-elements: 9;
   --marquee-anim-duration: calc(var(--marquee-elements)*1.5s);
 }
@@ -40,6 +46,82 @@ width: 100%;
   margin: 6px 18px;
   position: relative;
 }
+
+.modal-background {
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(1, 1 ,1 , 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.modal-container {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: var(--white);
+  box-shadow: var(--secondary) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modal-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-close-button {
+  width: 20px;
+  border: none;
+  background-color: transparent;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.modal-title{
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--main);
+}
+
+.modal-body{
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: larger;
+}
+
+.modal-footer{
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-footer button{
+  /* background-color: var(--main); */
+  background-color: var(--red);
+  border: none;
+  width: 120px;
+  height: 45px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--white);
+  font-size: larger;
+}
+
 .marquee-text{
   font-size: 29px;
   font-weight: 600;
@@ -64,12 +146,12 @@ width: 100%;
 
 .marquee::before {
   left: 0;
-  background: linear-gradient(to right, #fff 0%, transparent 100%);
+  background: linear-gradient(to right, var(--white) 0%, transparent 100%);
 } 
 
 .marquee::after {
   right: 0;
-  background: linear-gradient(to left, #fff 0%, transparent 100%);
+  background: linear-gradient(to left, var(--white) 0%, transparent 100%);
 }
 
 .track {
@@ -98,13 +180,13 @@ width: 100%;
     margin-left: 6px;
 }
 .logo{
-  color: gray;
+  color: var(--gray);
   font-size: 18px;
 
 }
 .cart-icon{
   font-size: 25px;
-  color: gray;
+  color: var(--gray);
   cursor: pointer;
   position: relative;
   transition: transform .4s ease;
@@ -118,7 +200,7 @@ width: 100%;
   position: absolute;
   right: -8px;
   font-size: 12px;
-  color: #eee;
+  color: var(--card-white);
   background-color: var(--main);
   width: 18px;
   height: 18px;
@@ -153,7 +235,7 @@ width: 100%;
 }
 .product-image{
   border-radius: 15px;
-  background-color: #ebebeb;
+  background-color: var(--card-white);
   transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
@@ -170,7 +252,7 @@ width: 100%;
 .hero-banner-container{
   /* padding: 100px 40px; */
   padding: 100px 40px;
-  background-color: #dcdcdc;
+  background-color: var(--darker-card-white);
   border-radius: 15px;
   position: relative;
   height: 500px;
@@ -181,7 +263,7 @@ width: 100%;
 .hero-banner-container .banner-small-text{
   font-size: 20px;
   z-index: 0;
-  color: #eee;
+  color: var(--card-white);
   font-weight: 500;
 }
 .hero-banner-container .banner-mid-text{
@@ -189,14 +271,14 @@ width: 100%;
 }
 
 .hero-banner-container .banner-large-text{
-  color: white;
+  color: var(--white);
 }
 
 .hero-banner-container button{
    border-radius: 15px;
   padding: 10px 16px;
   background-color: var(--main);
-  color: white;
+  color: var(--white);
   border: none;
   margin-top: 40px;
   font-size: 18px;
@@ -211,7 +293,7 @@ width: 100%;
   z-index: 1;
 }
 .hero-banner-container h1{
-  color: white;
+  color: var(--white);
   font-size: 10em;
   margin-left: -20px;
   text-transform: uppercase;
@@ -282,7 +364,7 @@ flex-direction: column;
   position: relative;
   height: 400px;
   line-height: 1; 
-  color: white;
+  color: var(--white);
   width: 100%;
   margin-top: 120px;
   z-index: 0;
@@ -294,7 +376,7 @@ flex-direction: column;
 .footer-banner-desc button{
   border-radius: 15px;
   padding: 10px 16px;
-  background-color: white;
+  background-color: var(--white);
   color: var(--main);
   border: none;
   margin-top: 40px;
@@ -346,7 +428,7 @@ flex-direction: column;
 .cart-container{
   height: 100vh;
   width: 600px;
-  background-color: white;
+  background-color: var(--white);
   float: right;
   padding: 40px 10px;
   position: relative;
@@ -416,7 +498,7 @@ padding: 20px 10px;
   width:180px ;
   height: 150px;
     border-radius: 15px;
- background-color: #ebebeb;
+ background-color: var(--card-white);
 }
 .item-desc .flex{
   display: flex;
@@ -473,7 +555,7 @@ padding: 30px 65px;
   margin-top: 40px;
   text-transform: uppercase;
   background-color: var(--main);
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
     transform: scale(1, 1);
   transition: transform 0.5s ease;
@@ -492,7 +574,7 @@ padding: 30px 65px;
 
 .product-detail-image{
   border-radius: 15px;
-   background-color: #ebebeb;
+   background-color: var(--card-white);
 
   width: 400px;
   height: 400px;
@@ -510,7 +592,7 @@ padding: 30px 65px;
 }
 .small-image{
   border-radius: 8px;
-  background-color: #ebebeb;
+  background-color: var(--card-white);
   width: 70px;
   height: 70px;
   cursor: pointer;
@@ -544,7 +626,7 @@ padding: 30px 65px;
   color:var(--main);
 }
 .price .old-price, .product-price .old-price, .price .old-price{
-  color: gray;
+  color: var(--gray);
   text-decoration: line-through;
 }
 .product-detail-desc .quantity{
@@ -563,7 +645,7 @@ padding: 30px 65px;
   margin-top: 40px;
   font-size: 18px;
   font-weight: 500;
-  background-color: white;
+  background-color: var(--white);
   color: var(--main);
   cursor: pointer;
   width: 200px;
@@ -578,7 +660,7 @@ padding: 30px 65px;
 
   padding: 10px 20px;
   background-color: var(--main);
-  color: white;
+  color: var(--white);
   border: none;
   margin-top: 40px;
   font-size: 18px;
@@ -591,7 +673,7 @@ padding: 30px 65px;
   transform:scale(1.1,1.1)
 }
 .quantity-desc{
-  border: 1px solid gray;
+  border: 1px solid var(--gray);
 padding: 6px;
 }
 .quantity-desc span{
@@ -600,11 +682,11 @@ padding: 6px;
   cursor: pointer;
 }
 .quantity-desc .minus{
-  border-right: 1px solid gray;
+  border-right: 1px solid var(--gray);
   color: var(--main);
 }
 .quantity-desc .num{
-  border-right: 1px solid gray;
+  border-right: 1px solid var(--gray);
   font-size: 20px;
 }
 .quantity-desc .plus{
@@ -641,7 +723,7 @@ padding: 6px;
   color: var(--main);
 }
 .success-wrapper, .cancel-wrapper{
-  background-color: white;
+  background-color: var(--white);
   min-height: 60vh;
 
 }
@@ -649,7 +731,7 @@ padding: 6px;
   width: 1000px;
 margin: auto;
 margin-top: 160px;
-  background-color: #dcdcdc;
+  background-color: var(--darker-card-white);
   padding: 50px;
   border-radius: 15px;
   display: flex;
