@@ -10,7 +10,6 @@ function Modal({ closeModal }) {
             <div className="modal-close">
                 <button className="modal-close-button" onClick={() => closeModal()}>
                     {/* <AiOutlineCloseCircle size={25} />
-                    
                      */}
                     <AiOutlineClose size={25} />
                 </button>
