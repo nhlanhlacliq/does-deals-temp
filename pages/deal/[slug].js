@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import { customStylesSlug } from '../../utils/styles';
 
 import { Modal } from '../../components';
+import { MapModal } from '../../components';
+
 
 const DealDetails = ({ deal, deals }) => {
     const { _id, 
@@ -193,10 +195,13 @@ const DealDetails = ({ deal, deals }) => {
                                 Visit now
                             </button>
                         </a>
-                        { modalOpen && <Modal closeModal={() => toggleModal()} /> }
+                        
                     </div>
                 </div>
         </div>
+
+        { modalOpen && <MapModal deal={deal} closeModal={() => toggleModal()} /> }
+        
         
         { dealsInSameShop.length > 0 && 
             <div className='other-products-wrapper'>

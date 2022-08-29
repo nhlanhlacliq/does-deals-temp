@@ -1,5 +1,5 @@
 // Also found in styles.css as var 'main'
-const mainColor = '#207f7f';
+export const mainColor = '#207f7f';
 
 const dot = (color = 'transparent') => ({
     alignItems: 'center',
