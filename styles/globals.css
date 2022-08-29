@@ -71,6 +71,10 @@ width: 100%;
   padding: 25px;
 }
 
+.map-modal-container {
+  height: 530px;
+}
+
 .modal-close {
   display: flex;
   justify-content: flex-end;
@@ -93,6 +97,10 @@ width: 100%;
   color: var(--main);
 }
 
+.map-modal-title{
+  margin-top: 0px;
+}
+
 .modal-body{
   flex: 50%;
   display: flex;
@@ -100,6 +108,11 @@ width: 100%;
   align-items: center;
   text-align: center;
   font-size: larger;
+}
+
+.modal-body img{
+  margin: 5px;
+  border-radius: 10px;
 }
 
 .modal-footer{
@@ -120,6 +133,10 @@ width: 100%;
   cursor: pointer;
   color: var(--white);
   font-size: larger;
+}
+
+.confirm-button {
+  background-color: var(--main) !important;
 }
 
 .marquee-text{
