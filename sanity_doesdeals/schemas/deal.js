@@ -6,7 +6,6 @@ export default  {
     title: 'Deal',
     type: 'document',
     icon: BiRightArrow,
-    description: 'Keep track of a restaurant\'s deals',
 
     fields: [
         {
