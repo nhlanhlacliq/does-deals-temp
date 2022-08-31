@@ -149,11 +149,14 @@ width: 100%;
   position: relative;
   height: 400px;
   width: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+  overflow: auto;
+  overflow-y: auto;
 }
 
 .marquee::before, .marquee::after {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   top: 0;
   width: 10rem;
   height: 100%;
