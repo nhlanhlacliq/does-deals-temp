@@ -19,7 +19,11 @@ body, * {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   box-sizing: border-box;
-
+}
+html,
+body {
+  width: auto !important;
+  overflow-x: hidden!important 
 }
 ::-webkit-scrollbar {
   width: 0px;
@@ -151,8 +155,10 @@ width: 100%;
   height: 400px;
   width: 100%;
   /* overflow-x: hidden; */
-  overflow: auto;
+  /* overflow: auto; */
+  overflow: scroll;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* disabled to due also scrollling with content */
@@ -787,6 +793,11 @@ margin-top: 160px;
   margin-top: 10px;
 }
 
+@media screen and (max-width:940px) {
+  .product-detail-container{
+    margin-left: 0;
+  }
+}
 @media screen and (max-width:853px) {
   .hero-banner-container h1{
     font-size: 140px;
@@ -937,35 +948,6 @@ margin-top: 160px;
   width: 300px;
   margin: auto;
 }
-
-.marquee::before, .marquee::after {
-  position: absolute;
-  top: 0;
-  width: 10rem;
-  height: 100%;
-  content: "";
-  z-index: 1;
-  display: none;
-}
-
-.marquee::before {
-  left: 0;
-  background: linear-gradient(to right, var(--white) 0%, transparent 100%);
-} 
-
-.marquee::after {
-  right: 0;
-  background: linear-gradient(to left, var(--white) 0%, transparent 100%);
-}
-
-.marquee {
-  position: relative;
-  height: 400px;
-  /* width: 97vw; */
-  width: 100%;
-  overflow-x: hidden;
-}
-
 }
 
 @media screen and (max-width:582px) {
