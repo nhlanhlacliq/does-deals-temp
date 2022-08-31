@@ -13,6 +13,7 @@ import { MapModal } from '../../components';
 
 
 const DealDetails = ({ deal, deals }) => {
+    const minScrollingDeals = 1;
     const { _id, 
             image, 
             restaurant, 
@@ -227,7 +228,7 @@ const DealDetails = ({ deal, deals }) => {
             </h2>
             
             <div className='marquee' >
-                <div className={filteredDeals.length > 3 
+                <div className={filteredDeals.length > minScrollingDeals 
                 ? 'maylike-products-container track'
                 : 'maylike-products-container'}
                 style={{"--marquee-elements": filteredDeals.length}}>
@@ -239,7 +240,7 @@ const DealDetails = ({ deal, deals }) => {
                     {/* Duplicated to prevent scrolling deals from having
                         whitespace gap inbetween last and fist deal */}
                     
-                    {filteredDeals.length > 3 && filteredDeals.map((d) => (
+                    {filteredDeals.length > minScrollingDeals && filteredDeals.map((d) => (
                         <Deal key={d._id} deal={d} /> 
                     ))}
                 </div>
