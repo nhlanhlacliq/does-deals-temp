@@ -239,7 +239,7 @@ const DealDetails = ({ deal, deals }) => {
                     
                     {/* Duplicated to prevent scrolling deals from having
                         whitespace gap inbetween last and fist deal */}
-                
+            
                     {filteredDeals.length > minScrollingDeals && filteredDeals.map((d) => (
                         <Deal key={d._id} deal={d} /> 
                     ))}
