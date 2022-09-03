@@ -707,7 +707,6 @@ padding: 6px;
   border-right: 1px solid var(--gray);
   color: var(--main);
 }
-
 .quantity-desc .num{
   border-right: 1px solid var(--gray);
   font-size: 20px;
