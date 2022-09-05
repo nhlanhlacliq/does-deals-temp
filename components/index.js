@@ -5,5 +5,5 @@ export { default as Layout } from './Layout';
 export { default as Navbar } from './Navbar';
 export { default as Product } from './Product';
 export { default as Deal } from './Deal';
-export { default as Modal } from './Modal'
-export { default as MapModal } from './MapModal'
+export { default as Modal } from './Modal';
+export { default as MapModal } from './MapModal';
