@@ -16,7 +16,7 @@ export default  {
             options: {
                 hotspot: true,
             },
-            description: 'A nice picture of the deal (or something related) so users can whet their appetites',
+            description: 'Required. You can use Unsplash(Add item, then click on select.) if picture\'s aren\'t avalilable',
             validation: Rule => Rule.required().warning()
         },
         {
