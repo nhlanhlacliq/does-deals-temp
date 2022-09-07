@@ -16,7 +16,7 @@ export default  {
             options: {
                 hotspot: true,
             },
-            description: 'Required. You can use Unsplash(Add item, then click on select, ) if picture\'s aren\'t avalilable',
+            description: 'Required. You can use Unsplash(Add item, then click on select, then) if picture\'s aren\'t avalilable',
             validation: Rule => Rule.required().warning()
         },
         {
