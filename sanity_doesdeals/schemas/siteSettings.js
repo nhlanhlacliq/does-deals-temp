@@ -4,7 +4,7 @@ export default  {
     name: 'siteSettings',
     title: 'Site Settings',
     type: 'document',
-    // icon: AiFillSetting,
+    icon: AiFillSetting,
     description: 'Settings that can be used to dynamically customize the site without needing code changes. You can suggest things you\'d like to control in the site from this menu',
 
     fieldsets: [
