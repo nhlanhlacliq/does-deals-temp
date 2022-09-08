@@ -6,6 +6,7 @@ import deal from './deal';
 import foodType from './foodType';
 import location from './location';
 import restaurant from './restaurant';
+import siteSettings from './siteSettings';
 
 export default createSchema({
   name: 'Deals',
@@ -14,6 +15,7 @@ export default createSchema({
     deal,
     restaurant,
     location,
-    foodType
+    foodType,
+    siteSettings
   ]),
 })
