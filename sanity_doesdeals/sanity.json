@@ -31,7 +31,7 @@
     },
     {
       "name": "part:@sanity/desk-tool/structure",
-      "path": "./sanity-structure.js"
+      "path": "./deskStructure.js"
     }
   ]
 }
