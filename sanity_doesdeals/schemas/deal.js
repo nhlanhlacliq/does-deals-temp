@@ -16,8 +16,8 @@ export default  {
             options: {
                 hotspot: true,
             },
-            description: 'Required. You can use Unsplash(Add item, then click on select, then unsplash) if picture\'s aren\'t avalilable',
-            validation: Rule => Rule.required().warning()
+            description: 'You can use Unsplash(Add item, then click on select, then unsplash) if pictures aren\'t avalilable. Or alternatively, the company logo',
+            validation: Rule => Rule.required()
         },
         {
             name: 'restaurant',

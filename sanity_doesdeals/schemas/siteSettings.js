@@ -45,13 +45,6 @@ export default  {
             fieldset: 'overhead'
         },
         {
-            name: 'homeName',
-            title: 'Home page name',
-            type: 'string',
-            description: '(Top left) Default is "Doesdeals\"',
-            fieldset: 'home'
-        },
-        {
             name: 'homeTitle',
             title: 'Home page title',
             type: 'string',
