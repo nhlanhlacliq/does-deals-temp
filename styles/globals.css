@@ -607,6 +607,12 @@ padding: 30px 65px;
   background-color: var(--main);
 
 }
+.image-error{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
 .small-images-container{
   display: flex;
   gap: 10px;
@@ -876,11 +882,13 @@ margin-top: 160px;
   }
   .product-detail-container{
     flex-wrap: wrap;
-    }
+  }
   .product-detail-container .product-detail-image{
     width: 350px;
     height: 350px;
   }
+
+
   .cart-container{
     width: 415px;
   padding: 4px;

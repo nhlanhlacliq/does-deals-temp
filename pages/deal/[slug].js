@@ -4,7 +4,7 @@ import { AiFillStar, AiOutlineStar, AiFillCalendar, AiFillEnvironment }from 'rea
 import Select from 'react-select';
 
 import { Deal } from '../../components';
-import { BiFoodMenu } from 'react-icons/bi';
+import { BiFoodMenu, BiErrorCircle } from 'react-icons/bi';
 import { useEffect } from 'react';
 import { customStylesSlug } from '../../utils/styles';
 
@@ -12,7 +12,7 @@ import { Modal } from '../../components';
 import { MapModal } from '../../components';
 
 
-const DealDetails = ({ deal, deals }) => {
+const DealDetails = ({ deal, deals, siteSettings }) => {
     const minScrollingDeals = 1;
     const { _id, 
             image, 
@@ -31,15 +31,19 @@ const DealDetails = ({ deal, deals }) => {
 
     const dealsInSameShop = deals.filter(d => 
         (d.restaurant.name === restaurant.name) && (d._id !== _id)
-    );
+    )
+    dealsInSameShop.forEach(deal => deal.image = deal.image || [siteSettings[0].imageDefault]);
+
 
     const dealsInSameArea = deals.filter(d => 
         (d.restaurant.area.area === restaurant.area.area) && (d._id !== _id)
     );
+    dealsInSameArea.forEach(deal => deal.image = deal.image || [siteSettings[0].imageDefault]);
 
     const dealsWithSameFood = deals.filter(d => 
         (d.food.type === food.type) && (d._id !== _id)
     );
+    dealsWithSameFood.forEach(deal => deal.image = deal.image || [siteSettings[0].imageDefault]);
 
     /**
      * State for modal. Temporary
@@ -80,6 +84,7 @@ const DealDetails = ({ deal, deals }) => {
     const otherDeals = deals.filter(d =>
         !coveredDealIds.includes(d._id)
     );
+    otherDeals.forEach(deal => deal.image = deal.image || [siteSettings[0].imageDefault]);
 
     const onSelectChange = (e) => { 
         if (e.value === food.type){
@@ -143,7 +148,13 @@ const DealDetails = ({ deal, deals }) => {
                         ))}
                 </div>
             </div>
-            : <p> Loading images... </p>
+            :   <div className='image-container' >
+                    <div className='product-detail-image'> 
+                        <div className="image-error">
+                            <BiErrorCircle size={48}/> 
+                        </div>
+                    </div>
+                </div>
             }
                 <div className='product-detail-desc' >
                     <h1>{restaurant.name}</h1>
@@ -292,11 +303,17 @@ export const getStaticProps = async ({ params: { slug } }) => {
         }
     }`;
 
+    const settingsQuery = `*[_type == "siteSettings"] {
+        ...
+    }`;
+
+      
     const deal = await client.fetch(dealQuery);
     const deals = await client.fetch(dealsQuery);
+    const siteSettings = await client.fetch(settingsQuery);
 
     return {
-      props: { deal, deals }
+      props: { deal, deals, siteSettings }
     }
 }
 

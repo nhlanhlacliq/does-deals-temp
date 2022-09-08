@@ -6,7 +6,9 @@ import Select from 'react-select';
 import { parseDays, dayFilterOptions, parseFoodTypes, parseAreas } from '../utils/helpers';
 import { customStylesHome } from '../utils/styles'; 
 
-const Home = ({ deals, bannerData }) => {
+const Home = ({ deals, bannerDeal, siteSettings }) => {
+  // To add default image in case deal does not have image published from backend
+  deals.forEach(deal => deal.image = deal.image || [siteSettings[0].imageDefault]);
 
   const [ filteredDeals, setFilteredDeals ] = useState(deals);
   
@@ -89,13 +91,13 @@ const Home = ({ deals, bannerData }) => {
 
     setFilteredDeals(filterList);
   }
-
+  
   return (
     <>
-      <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
+      <HeroBanner heroBanner={bannerDeal.length && bannerDeal[0]} />
       <div className='products-heading' >
-        <h2> Best Deals </h2>
-        <p>In and around Stellenbosch</p>
+        <h2>{siteSettings[0].homeTitle}</h2>
+        <p>{siteSettings[0].homeSubtitle}</p>
       </div>
 
       <div className="filter-section">
@@ -107,8 +109,7 @@ const Home = ({ deals, bannerData }) => {
           isSearchable={false}
         />
 
-        {/* <Select key={`select-${foodFilter}`}  */}
-        <Select 
+        <Select
           options={foodFilterOptions} 
           onChange={filterDealsByFoodType} 
           value={foodFilter}
@@ -130,7 +131,7 @@ const Home = ({ deals, bannerData }) => {
         }
       </div>
 
-      <FooterBanner footerBanner={bannerData && bannerData[0]}/>
+      <FooterBanner footerBanner={bannerDeal && bannerDeal[0]}/>
     </>
   )
 }
@@ -157,10 +158,15 @@ export const getServerSideProps  = async () => {
       }
     }
   }`;
-  const bannerData = await client.fetch(bannerQuery);
+  const bannerDeal = await client.fetch(bannerQuery);
+
+  const settingsQuery = `*[_type == "siteSettings"] {
+      ...
+    }`;
+  const siteSettings = await client.fetch(settingsQuery);
 
   return {
-    props: { deals, bannerData }
+    props: { deals, bannerDeal, siteSettings }
   }
 }
 
